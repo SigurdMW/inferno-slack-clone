@@ -8,7 +8,26 @@ import Logo from './logo';
 import styles from './App.module.css';
 
 class App extends Component {
+
+  displayData = () => {
+    const dataStore = this.context.store.getState();
+    console.log(dataStore);
+    const data = dataStore.userReducer.users.map(user => {
+      console.log(user.name);
+    });
+  }
+
   render() {
+    const store = this.context.store;
+    const state = store.getState();
+
+    const onClick = e => {
+        e.preventDefault();
+        store.dispatch({
+            type: 'GET_USERS'
+        });
+    };
+
     return (
       <div className={styles.App}>
         <div className={styles.AppHeader}>
@@ -18,6 +37,8 @@ class App extends Component {
         <p className={styles.AppIntro}>
           To get started, edit <code>src/App.js</code> and save to reload. <Link to="/page-not-found">404 link</Link>
         </p>
+        <button onClick={onClick}>Get users</button>
+        <button onClick={this.displayData}>Test display data</button>
         {this.props.children}
       </div>
     );
