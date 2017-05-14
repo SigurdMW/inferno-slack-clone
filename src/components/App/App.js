@@ -2,6 +2,7 @@ import { version } from 'inferno';
 import Component from 'inferno-component';
 import { bindActionCreators } from 'redux'
 import * as actionCreators from '../../actions/actionCreators'
+import { Link } from 'inferno-router';
 import { connect } from 'inferno-redux';
 import Logo from './logo';
 import styles from './App.module.css';
@@ -15,7 +16,7 @@ class App extends Component {
           <h2>{`Welcome to Inferno ${version}`}</h2>
         </div>
         <p className={styles.AppIntro}>
-          To get started, edit <code>src/App.js</code> and save to reload.
+          To get started, edit <code>src/App.js</code> and save to reload. <Link to="/page-not-found">404 link</Link>
         </p>
         {this.props.children}
       </div>

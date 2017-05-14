@@ -6,6 +6,7 @@ import store from '../../store'
 //components
 import App from '../App/App';
 import Home from '../Home/Home';
+import NotFoundExeption from '../Pages/NotFoundExeption';
 
 // create the browser history object
 const browserHistory = createBrowserHistory();
@@ -17,6 +18,7 @@ const AppRoutes = (props) => {
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
+          <Route path="*" component={NotFoundExeption} />
         </Route>
       </Router>
     </Provider>
