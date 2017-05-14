@@ -1,4 +1,6 @@
 {
+  "lang": "en",
+  "background_color": "#ffffff",
   "short_name": "Inferno Slack Clone",
   "name": "Inferno Slack Clone PWA",
   "icons": [
