@@ -1,5 +1,8 @@
 import { version } from 'inferno';
 import Component from 'inferno-component';
+import { bindActionCreators } from 'redux'
+import * as actionCreators from '../../actions/actionCreators'
+import { connect } from 'inferno-redux';
 import Logo from './logo';
 import styles from './App.module.css';
 
@@ -14,9 +17,23 @@ class App extends Component {
         <p className={styles.AppIntro}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        {this.props.children}
       </div>
     );
   }
 }
 
-export default App;
+// make state available in props
+function mapStateToProps(state){
+	return {
+		users: state.users,
+	}
+}
+
+// make action creators available in props
+function mapDispatchToProps(dispatch){
+	return bindActionCreators(actionCreators, dispatch)
+}
+
+// connect action creators + state in the App component
+export default connect(mapStateToProps, mapDispatchToProps)(App);

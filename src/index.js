@@ -1,5 +1,8 @@
 import { render } from 'inferno';
-import App from './App';
+import AppRoutes from './components/AppRoutes/AppRoutes';
 import './index.css';
 
-render(<App />, document.getElementById('app'));
+// enable react devtools for inferno
+import * as devtools from 'inferno-devtools';
+
+render(<AppRoutes />, document.getElementById('app'));
