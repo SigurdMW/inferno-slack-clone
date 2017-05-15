@@ -10,6 +10,7 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const cssnext = require('postcss-cssnext');
 const style = require('style-loader');
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -157,7 +158,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract({
             fallback:  'style-loader',
             use:       'css-loader?modules&camelCase&importLoaders=1&localIdentName=[path][name]--[local]--[hash:base64:5]!postcss-loader',
-            
+
         })
       },
       {
@@ -254,6 +255,23 @@ module.exports = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
     }),
+    // create a service worker for the application
+    new SWPrecacheWebpackPlugin(
+      {
+        cacheId: 'inferno-slack-clone',
+        filename: 'service-worker.js',
+        staticFileGlobs: [
+          'build/static/js/**.*',
+          'build/static/css/**.css',
+        ],
+        maximumFileSizeToCacheInBytes: 4194304,
+        minify: true,
+        runtimeCaching: [{
+          handler: 'cacheFirst',
+          urlPattern: /[.]mp3$/,
+        }],
+      }
+    ),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

@@ -48,7 +48,7 @@
     "promise": "7.1.1",
     "redux-logger": "^3.0.1",
     "style-loader": "^0.16.1",
-    "sw-precache": "^5.1.1",
+    "sw-precache-webpack-plugin": "^0.11.0",
     "url-loader": "0.5.8",
     "webpack": "2.3.3",
     "webpack-dev-server": "2.4.2",
@@ -57,7 +57,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js && sw-precache --config=sw-precache-config.js",
+    "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
